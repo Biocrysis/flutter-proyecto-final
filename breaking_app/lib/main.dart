@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
           //la clase de ruta no sirve nada y no reconoce la nueva pagina
           'personaje': (BuildContext context) => PersonajeProvider(),
           'frases': (BuildContext context) => FrasesProvider(),
-          'muertos': (BuildContext context) => MuertosProvider()
+          'asesinatos': (BuildContext context) => MuertosProvider()
         });
   }
 }

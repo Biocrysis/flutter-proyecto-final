@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:breaking_app/src/models/frases_model.dart';
+import 'package:breaking_app/src/models/muertos_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -13,10 +14,10 @@ class MuertosProvider extends StatefulWidget {
 
 class _MuertosProviderState extends State<MuertosProvider> {
   http.Client? cliente;
-  static const String URLAPI = 'https://www.breakingbadapi.com/api/quotes';
+  static const String URLAPI = 'https://www.breakingbadapi.com/api/deaths';
 
 //clase post de referencia json model
-  List<Frase>? posts;
+  List<Muerto>? posts;
   bool loading = false;
   bool error = false;
 
@@ -24,7 +25,7 @@ class _MuertosProviderState extends State<MuertosProvider> {
   @override
   void initState() {
     // ignore: deprecated_member_use
-    posts = <Frase>[];
+    posts = <Muerto>[];
     cliente = http.Client();
     obtenerDataFromJSON();
 
@@ -36,7 +37,9 @@ class _MuertosProviderState extends State<MuertosProvider> {
     if (respuesta.statusCode == 200) {
       //creamos un mapa para decodificar el json
       List jsonData = jsonDecode(utf8.decode(respuesta.bodyBytes));
-      jsonData.map((dynamic json) => posts!.add(Frase.fromJSON(json))).toList();
+      jsonData
+          .map((dynamic json) => posts!.add(Muerto.fromJSON(json)))
+          .toList();
       //  print(jsonData);
     } else {
       Exception('a fallado la conexion de la respuesta');
@@ -72,9 +75,9 @@ class _MuertosProviderState extends State<MuertosProvider> {
               itemCount: posts!.length,
               itemBuilder: (BuildContext context, int index) {
                 return ListTile(
-                  title: Text('${posts![index].getAuthor}: ' +
-                      '${posts![index].getQuote}'),
-                  //subtitle: Text('${posts![index].getBody}.'),
+                  title: Text('${posts![index].responsible}'),
+                  subtitle: Text('causa: ${posts![index].cause}. ' +
+                      'muerto: ${posts![index].death}'),
                 );
               },
             ),
