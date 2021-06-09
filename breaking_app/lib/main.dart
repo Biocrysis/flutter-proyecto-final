@@ -1,4 +1,5 @@
 import 'package:breaking_app/src/pages/personaje_detalle.dart';
+import 'package:breaking_app/src/provider/personaje_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:breaking_app/src/pages/home_page.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
           '/': (BuildContext context) => HomePage(),
           //si no instancioamos la ruta aqui
           //la clase de ruta no sirve nada y no reconoce la nueva pagina
-          'personaje': (BuildContext context) => PersonajeDetalle()
+          'personaje': (BuildContext context) => PersonajeProvider()
         });
   }
 }
