@@ -73,7 +73,7 @@ class _PersonajeProviderState extends State<PersonajeProvider> {
               itemCount: posts!.length,
               itemBuilder: (BuildContext context, int index) {
                 return ListTile(
-                  title: Text('${posts![index].getImg}'),
+                  title: Text('${posts![index].name}'),
                   // subtitle: Text('${posts![index].getBody}.'),
                 );
               },
