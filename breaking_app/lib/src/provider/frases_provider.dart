@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:breaking_app/src/models/frases_model.dart';
-import 'package:breaking_app/src/models/referencia_json_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 

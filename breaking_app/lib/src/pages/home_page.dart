@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
-    List<String> nav = ['personaje', 'episodios', 'frases'];
+    List<String> nav = ['personaje', 'episodios', 'frases', 'muertos'];
     return Scaffold(
       appBar: AppBar(
         title: Text('Menu'),
