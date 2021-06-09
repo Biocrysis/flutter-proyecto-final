@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:breaking_app/src/pages/home_page.dart';
 
+//f2 para renombrar parametros owo
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
