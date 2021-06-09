@@ -35,9 +35,9 @@ class _PersonajeProviderState extends State<PersonajeProvider> {
     if (respuesta.statusCode == 200) {
       //creamos un mapa para decodificar el json
       List jsonData = jsonDecode(utf8.decode(respuesta.bodyBytes));
-      jsonData
+      /* jsonData
           .map((dynamic json) => posts!.add(Personaje.fromJSON(json)))
-          .toList();
+          .toList(); */
       //  print(jsonData);
     } else {
       Exception('a fallado la conexion de la respuesta');
