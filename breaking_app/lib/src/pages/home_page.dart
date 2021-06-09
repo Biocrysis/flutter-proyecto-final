@@ -1,6 +1,4 @@
-import 'package:breaking_app/src/provider/personaje_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 
 class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
