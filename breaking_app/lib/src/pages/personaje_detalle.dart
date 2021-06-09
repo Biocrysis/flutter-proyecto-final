@@ -10,9 +10,18 @@ class PersonajeDetalle extends StatefulWidget {
 
 class _PersonajeDetalleState extends State<PersonajeDetalle> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      child: child,
+    // TODO: implement build
+    return Scaffold(
+      body: Container(
+        child: Text('trabajando con la api de internet'),
+      ),
     );
   }
 }
