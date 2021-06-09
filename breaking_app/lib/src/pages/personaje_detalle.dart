@@ -27,7 +27,7 @@ class _PersonajeDetalleState extends State<PersonajeDetalle> {
     posts = <Post>[];
     cliente = http.Client();
     obtenerDataFromJSON();
-    // TODO: implement initState
+
     super.initState();
   }
 

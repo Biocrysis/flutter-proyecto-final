@@ -1,21 +1,23 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:breaking_app/src/models/personajes_models.dart';
-import 'package:flutter/material.dart';
 
-class PersonajeProvider extends StatefulWidget {
-  PersonajeProvider({Key? key}) : super(key: key);
+import 'package:breaking_app/src/models/frases_model.dart';
+import 'package:breaking_app/src/models/referencia_json_model.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+class FrasesProvider extends StatefulWidget {
+  FrasesProvider({Key? key}) : super(key: key);
 
   @override
-  _PersonajeProviderState createState() => _PersonajeProviderState();
+  _FrasesProviderState createState() => _FrasesProviderState();
 }
 
-class _PersonajeProviderState extends State<PersonajeProvider> {
+class _FrasesProviderState extends State<FrasesProvider> {
   http.Client? cliente;
-  static const String URLAPI = 'https://www.breakingbadapi.com/api/characters';
+  static const String URLAPI = 'https://www.breakingbadapi.com/api/quotes';
 
 //clase post de referencia json model
-  List<Personaje>? posts;
+  List<Frase>? posts;
   bool loading = false;
   bool error = false;
 
@@ -23,7 +25,7 @@ class _PersonajeProviderState extends State<PersonajeProvider> {
   @override
   void initState() {
     // ignore: deprecated_member_use
-    posts = <Personaje>[];
+    posts = <Frase>[];
     cliente = http.Client();
     obtenerDataFromJSON();
 
@@ -35,9 +37,7 @@ class _PersonajeProviderState extends State<PersonajeProvider> {
     if (respuesta.statusCode == 200) {
       //creamos un mapa para decodificar el json
       List jsonData = jsonDecode(utf8.decode(respuesta.bodyBytes));
-      /* jsonData
-          .map((dynamic json) => posts!.add(Personaje.fromJSON(json)))
-          .toList(); */
+      jsonData.map((dynamic json) => posts!.add(Frase.fromJSON(json))).toList();
       //  print(jsonData);
     } else {
       Exception('a fallado la conexion de la respuesta');
@@ -73,8 +73,9 @@ class _PersonajeProviderState extends State<PersonajeProvider> {
               itemCount: posts!.length,
               itemBuilder: (BuildContext context, int index) {
                 return ListTile(
-                  title: Text('${posts![index].getImg}'),
-                  // subtitle: Text('${posts![index].getBody}.'),
+                  title: Text('${posts![index].getAuthor}: ' +
+                      '${posts![index].getQuote}'),
+                  //subtitle: Text('${posts![index].getBody}.'),
                 );
               },
             ),

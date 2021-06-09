@@ -31,37 +31,26 @@ class Personaje {
   get getBirthday => this.birthday;
   get getOccupation => this.occupation;
   get getImg => this.img;
+  get getStatus => this.status;
+  get getNickName => this.nickname;
+  get getApparence => this.appearance;
+  get getPortrayed => this.portrayed;
+  get getCategory => this.category;
+  get getbetterCallSaulAppearance => this.betterCallSaulAppearance;
 
 //get data del json
-  factory Personaje.fromJsonMap(Map<String, dynamic> json) {
-    return Personaje(
+  factory Personaje.fromJSON(Map<String, dynamic> json) {
+    return new Personaje(
         int.parse(json['char_id'].toString()),
-        json['name'],
-        json['birthday'],
+        json['name'].toString(),
+        json['birthday'].toString(),
         json['occupation'],
-        json['img'],
-        json['satus'],
-        json['nickname'],
-        json['appearance'].cast<int>(),
-        json['portrayed'],
-        json['category'],
+        json['img'].toString(),
+        json['satus'].toString(),
+        json['nickname'].toString(),
+        json['appearance'],
+        json['portrayed'].toString(),
+        json['category'].toString(),
         json['better_call_saul_appearance']);
-    /*  charId = json['char_id'],
-      name = json['name'],
-      birthday = json['birthday'],
-      occupation = json['occupation'],
-      img = json['img'],
-      status = json['satus'];
-      nickname = json['nickname'];
-      appearance = json['appearance'].cast<int>();
-      portrayed = json['portrayed'];
-      category = json['category'];
-      betterCallSaulAppearance = json['better_call_saul_appearance']; */
-  }
-
-  getImgPersonaje() {
-    if (img != null) {
-      return img;
-    }
   }
 }
