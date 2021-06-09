@@ -12,6 +12,9 @@ class _PersonajeDetalleState extends State<PersonajeDetalle> {
   http.Client? cliente;
   static const String URLAPI = 'https://jsonplaceholder.typicode.com/posts';
 
+  bool loading = false;
+  bool error = false;
+
   @override
   void initState() {
     cliente = http.Client();
@@ -27,6 +30,10 @@ class _PersonajeDetalleState extends State<PersonajeDetalle> {
     } else {
       Exception('a fallado la conexion de la respuesta');
     }
+    setState(() {
+      loading = false;
+      error = true;
+    });
   }
 
   @override
