@@ -53,4 +53,8 @@ class Personaje {
         json['category'].toString(),
         json['better_call_saul_appearance']);
   }
+
+  getPosterImg() {
+    print('olas');
+  }
 }

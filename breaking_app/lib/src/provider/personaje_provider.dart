@@ -38,7 +38,6 @@ class _PersonajeProviderState extends State<PersonajeProvider> {
       jsonData
           .map((dynamic json) => posts!.add(Personaje.fromJSON(json)))
           .toList();
-      //  print(jsonData);
     } else {
       Exception('a fallado la conexion de la respuesta');
     }
