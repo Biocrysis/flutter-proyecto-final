@@ -35,8 +35,7 @@ class _PersonajeDetalleState extends State<PersonajeDetalle> {
     http.Response respuesta = await cliente!.get(Uri.parse(URLAPI));
     if (respuesta.statusCode == 200) {
       //creamos un mapa para decodificar el json
-      Map<String, dynamic> jsonData =
-          jsonDecode(utf8.decode(respuesta.bodyBytes));
+      List jsonData = jsonDecode(utf8.decode(respuesta.bodyBytes));
       print(jsonData);
     } else {
       Exception('a fallado la conexion de la respuesta');
@@ -66,15 +65,29 @@ class _PersonajeDetalleState extends State<PersonajeDetalle> {
   Widget customListBuilder() {
     return SafeArea(
         child: Container(
-      child: ListView.builder(
-        itemCount: posts!.length,
-        itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            title: Text('${posts![index].getTitle}'),
-            subtitle: Text('${posts![index].getBody}.'),
-          );
-        },
-      ),
+      child: posts!.isEmpty
+          ? deataEmpty()
+          : ListView.builder(
+              itemCount: posts!.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ListTile(
+                  title: Text('${posts![index].getTitle}'),
+                  subtitle: Text('${posts![index].getBody}.'),
+                );
+              },
+            ),
     ));
+  }
+
+  Widget deataEmpty() {
+    return Container(
+      child: Column(
+        children: <Widget>[
+          ListTile(
+            title: Text('Lista vacia'),
+          )
+        ],
+      ),
+    );
   }
 }
