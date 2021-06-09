@@ -2,14 +2,14 @@ class Personaje {
   int? charId;
   String? name;
   String? birthday;
-  List<dynamic>? occupation;
+  List<String>? occupation;
   String? img;
   String? status;
   String? nickname;
-  List<dynamic>? appearance;
+  List<int>? appearance;
   String? portrayed;
   String? category;
-  List<dynamic>? betterCallSaulAppearance;
+  List<int>? betterCallSaulAppearance;
 
   Personaje(
     this.charId,
