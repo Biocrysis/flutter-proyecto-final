@@ -2,22 +2,21 @@ import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
+    List<String> nav = ['Personaje', 'Episodios'];
     return Scaffold(
       appBar: AppBar(
         title: Text('Menu'),
       ),
       drawer: Drawer(
-        child: ListView(
-          children: <Widget>[
-            ListTile(
-              title: Text('Personajes'),
-              onTap: () {},
-            ),
-            ListTile(
-              title: Text("Episiodos"),
-              onTap: () {},
-            )
-          ],
+        child: ListView.builder(
+          itemCount: nav.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: Text('${nav[index]}'),
+              //metodo que depende el index nos va ayudara a irnos a diferentes paginas
+              onTap: () => Navigator.of(context).pushNamed(nav[index]),
+            );
+          },
         ),
       ),
       body: Container(
