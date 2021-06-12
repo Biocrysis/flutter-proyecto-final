@@ -1,4 +1,3 @@
-import 'package:breaking_app/src/pages/listtview_page.dart';
 import 'package:breaking_app/src/provider/frases_provider.dart';
 import 'package:breaking_app/src/provider/muertos_provider.dart';
 import 'package:breaking_app/src/provider/personaje_provider.dart';
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
           //si no instancioamos la ruta aqui
           //la clase de ruta no sirve nada y no reconoce la nueva pagina
           'personaje': (BuildContext context) => PersonajeProvider(),
-          'episodios': (BuildContext context) => ListaPage(),
+
           'frases': (BuildContext context) => FrasesProvider(),
           'asesinatos': (BuildContext context) => MuertosProvider()
         });
