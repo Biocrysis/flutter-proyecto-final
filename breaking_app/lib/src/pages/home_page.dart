@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 
 class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -33,10 +32,6 @@ class HomePage extends StatelessWidget {
           filter: ImageFilter.blur(sigmaX: 6.0, sigmaY: 6.0),
           child: Container(
             decoration: BoxDecoration(color: Colors.white.withOpacity(0.01)),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [Flexible(child: _swiperTarjeta()), Text('ola')],
-            ),
           ),
         ),
       ),
@@ -44,16 +39,6 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _swiperTarjeta() {
-    return new Swiper(
-      itemBuilder: (BuildContext context, index) {
-        return new Image.network(
-          'http://via.placeholder.com/288x188',
-        );
-      },
-      itemCount: 3,
-      itemHeight: 300,
-      itemWidth: 400,
-      scale: 0.5,
-    );
+    return Container();
   }
 }
