@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:breaking_app/src/provider/frases_provider.dart';
 import 'package:breaking_app/src/provider/muertos_provider.dart';
 import 'package:breaking_app/src/provider/personaje_provider.dart';
