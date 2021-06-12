@@ -34,7 +34,8 @@ class HomePage extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(color: Colors.white.withOpacity(0.01)),
             child: Column(
-              children: [_swiperTarjeta()],
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [Flexible(child: _swiperTarjeta()), Text('ola')],
             ),
           ),
         ),
@@ -52,6 +53,7 @@ class HomePage extends StatelessWidget {
       itemCount: 3,
       itemHeight: 300,
       itemWidth: 400,
+      scale: 0.5,
     );
   }
 }
