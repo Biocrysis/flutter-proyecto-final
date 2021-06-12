@@ -66,7 +66,6 @@ class _PersonajeProviderState extends State<PersonajeProvider> {
   Widget customListBuilder() {
     return SafeArea(
         child: Container(
-<<<<<<< HEAD
       child: posts!.isEmpty
           ? deataEmpty()
           : ListView.builder(
@@ -79,42 +78,6 @@ class _PersonajeProviderState extends State<PersonajeProvider> {
               },
             ),
     ));
-=======
-          child: posts!.isEmpty
-              ? deataEmpty()
-              : ListView.builder(
-                  itemCount: posts!.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return SafeArea(
-                        child: Container(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ListTile(
-                            title: Text('${posts![index].name}'),
-                            subtitle: FadeInImage(
-                                placeholder: AssetImage("assets/loadnier.gif"),
-                                image: NetworkImage('${posts![index].img}')),
-                            onTap: () {
-                              _showMyDialog(context);
-                              ultimoItem = index;
-                            },
-                          )
-                        ],
-                      ),
-                    ));
-
-                    /* return ListTile(
-                      title: Text('${posts![index].name}'),
-                      subtitle: FadeInImage(
-                        placeholder: AssetImage("assets/loadnier.gif"),
-                        image: NetworkImage('${posts![index].img}'),
-                      ),
-                    ); */
-                  },
-                ),
-        ));
->>>>>>> parent of 0e087d4 (fondo al home page)
   }
 
   Widget deataEmpty() {
@@ -126,22 +89,6 @@ class _PersonajeProviderState extends State<PersonajeProvider> {
           )
         ],
       ),
-    );
-  }
-
-//creamos la alerta
-  Widget _alertDialog(context) {
-    return AlertDialog(
-      title: Text('Sobre Nombre'),
-      content: Text("${posts![ultimoItem].nickname}"),
-    );
-  }
-
-  //creamos la alerta
-  Future _showMyDialog(BuildContext context) async {
-    return showDialog(
-      context: context,
-      builder: (_) => _alertDialog(context),
     );
   }
 }
