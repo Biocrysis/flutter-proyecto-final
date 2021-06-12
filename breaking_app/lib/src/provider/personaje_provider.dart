@@ -110,15 +110,40 @@ class _PersonajeProviderState extends State<PersonajeProvider> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           ListTile(
-                            title: Text('${posts![index].name}'),
-                            subtitle: FadeInImage(
-                                placeholder: AssetImage("assets/loadnier.gif"),
-                                image: NetworkImage('${posts![index].img}')),
-                            onTap: () {
-                              _showMyDialog(context);
-                              ultimoItem = index;
-                            },
-                          )
+                              title: Text(''),
+                              subtitle: Card(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(30)),
+                                  margin: EdgeInsets.all(15),
+                                  elevation: 10,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(30),
+                                    child: Column(
+                                      children: <Widget>[
+                                        FadeInImage(
+                                          // En esta propiedad colocamos la imagen a descargar
+                                          image: NetworkImage(
+                                              '${posts![index].img}'),
+
+                                          // En esta propiedad colocamos el gif o imagen de carga
+                                          // debe estar almacenado localmente
+                                          placeholder:
+                                              AssetImage('assets/loadnier.gif'),
+
+                                          // En esta propiedad colocamos mediante el objeto BoxFit
+                                          // la forma de acoplar la imagen en su contenedor
+                                          fit: BoxFit.cover,
+
+                                          // En esta propiedad colocamos el alto de nuestra imagen
+                                          height: 260,
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.all(10),
+                                          child: Text('${posts![index].name}'),
+                                        )
+                                      ],
+                                    ),
+                                  )))
                         ],
                       ),
                     ));
@@ -144,22 +169,6 @@ class _PersonajeProviderState extends State<PersonajeProvider> {
           )
         ],
       ),
-    );
-  }
-
-//creamos la alerta
-  Widget _alertDialog(context) {
-    return AlertDialog(
-      title: Text('Sobre Nombre'),
-      content: Text("${posts![ultimoItem].nickname}"),
-    );
-  }
-
-  //creamos la alerta
-  Future _showMyDialog(BuildContext context) async {
-    return showDialog(
-      context: context,
-      builder: (_) => _alertDialog(context),
     );
   }
 }
