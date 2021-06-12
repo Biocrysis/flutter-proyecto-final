@@ -8,10 +8,10 @@ class PersonajeProvider extends StatefulWidget {
   PersonajeProvider({Key? key}) : super(key: key);
 
   @override
-  _PersonajeProviderState createState() => _PersonajeProviderState();
+  PersonajeProviderState createState() => PersonajeProviderState();
 }
 
-class _PersonajeProviderState extends State<PersonajeProvider> {
+class PersonajeProviderState extends State<PersonajeProvider> {
   http.Client? cliente;
   static const String URLAPI = 'https://www.breakingbadapi.com/api/characters';
 
@@ -23,6 +23,8 @@ class _PersonajeProviderState extends State<PersonajeProvider> {
 //DISEÑO PARA LA LISTA DE IMAGENS DE LOS PERSONAJES
   List<int> _listNumero = [];
   int ultimoItem = 0;
+
+  List<dynamic> images = [];
 //clase que inicial todas las variables
   @override
   void initState() {
@@ -34,7 +36,7 @@ class _PersonajeProviderState extends State<PersonajeProvider> {
     super.initState();
   }
 
-  Future<void> obtenerDataFromJSON() async {
+  Future<List<Personaje>> obtenerDataFromJSON() async {
     http.Response respuesta = await cliente!.get(Uri.parse(URLAPI));
     if (respuesta.statusCode == 200) {
       //creamos un mapa para decodificar el json
@@ -42,6 +44,9 @@ class _PersonajeProviderState extends State<PersonajeProvider> {
       jsonData
           .map((dynamic json) => posts!.add(Personaje.fromJSON(json)))
           .toList();
+
+      images.add(jsonData);
+      //print(images);
     } else {
       Exception('a fallado la conexion de la respuesta');
     }
@@ -49,6 +54,8 @@ class _PersonajeProviderState extends State<PersonajeProvider> {
       loading = false;
       error = true;
     });
+
+    return [];
   }
 
   @override
