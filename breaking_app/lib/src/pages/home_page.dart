@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> nav = ['personaje', 'episodios', 'frases', 'asesinatos'];
+    List<String> nav = ['personaje', 'frases', 'asesinatos'];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green[900],

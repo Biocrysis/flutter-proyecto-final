@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ui';
 
 import 'package:breaking_app/src/models/muertos_model.dart';
 import 'package:flutter/material.dart';
@@ -52,9 +53,29 @@ class _MuertosProviderState extends State<MuertosProvider> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        //loading? == SE ESTA CARGANDO EL CONTENIDO DE CUSTOMLOADING?
-        body:
-            Container(child: loading ? customLoading() : customListBuilder()));
+        floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.of(context).pop();
+            }),
+        body: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('assets/fon2.jpg'), fit: BoxFit.fill),
+            ),
+            child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 6.0, sigmaY: 6.0),
+                child: Container(
+                    decoration:
+                        BoxDecoration(color: Colors.white.withOpacity(0.01)),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Flexible(
+                            child:
+                                loading ? customLoading() : customListBuilder())
+                      ],
+                    )))));
   }
 
   Widget customLoading() {
