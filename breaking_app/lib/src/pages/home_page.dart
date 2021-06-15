@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
                 decoration:
                     BoxDecoration(color: Colors.white.withOpacity(0.01)),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [_swiperTarjeta()],
                 ))),
       ),
@@ -118,10 +118,11 @@ class _HomePageState extends State<HomePage> {
         child: Swiper(
           //regresa el poster de todas las peliculas
           itemBuilder: (BuildContext context, int index) {
+            Text('tthtthr');
             return ClipRRect(
               borderRadius: BorderRadius.circular(12.0),
               child: FadeInImage(
-                image: NetworkImage('${posts?[index].img}'),
+                image: NetworkImage('${posts?[index].img}', scale: 0.5),
                 placeholder: AssetImage('assets/no-image.jpg'),
                 fit: BoxFit.cover,
               ),

@@ -110,8 +110,62 @@ class _PersonajeProviderState extends State<PersonajeProvider> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           ListTile(
+                            onTap: () {
+                              print('ola');
+                            },
+                            subtitle: Card(
+                              child: ExpansionTile(
+                                title: Text(
+                                  '${posts![index].name}',
+                                ),
+                                children: [
+                                  FadeInImage(
+                                      placeholder:
+                                          AssetImage("assets/loadnier.gif"),
+                                      image: NetworkImage(
+                                        '${posts![index].img}',
+                                      ))
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ));
+
+                    /* return ListTile(
+                      title: Text('${posts![index].name}'),
+                      subtitle: FadeInImage(
+                        placeholder: AssetImage("assets/loadnier.gif"),
+                        image: NetworkImage('${posts![index].img}'),
+                      ),
+                    ); */
+                  },
+                ),
+        ));
+  }
+
+/*   Widget customListBuilder() {
+    return SafeArea(
+        top: true,
+        child: Container(
+          child: posts!.isEmpty
+              ? deataEmpty()
+              : ListView.builder(
+                  itemCount: posts!.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return SafeArea(
+                        child: Container(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ListTile(
+                              onTap: () {
+                                print('${posts![index].birthday}');
+                              },
                               title: Text(''),
                               subtitle: Card(
+                                
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(30)),
                                   margin: EdgeInsets.all(15),
@@ -158,7 +212,7 @@ class _PersonajeProviderState extends State<PersonajeProvider> {
                   },
                 ),
         ));
-  }
+  } */
 
   Widget deataEmpty() {
     return Container(
