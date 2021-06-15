@@ -1,9 +1,12 @@
 import 'dart:ui';
 
+import 'package:breaking_app/src/models/personajes_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 class HomePage extends StatelessWidget {
+  final List<Personaje> personajesList = [];
+
   Widget build(BuildContext context) {
     List<String> nav = ['personaje', 'episodios', 'frases', 'asesinatos'];
     return Scaffold(
@@ -45,9 +48,7 @@ class HomePage extends StatelessWidget {
   Widget _swiperTarjeta() {
     return new Swiper(
       itemBuilder: (BuildContext context, index) {
-        return new Image.network(
-          'http://via.placeholder.com/288x188',
-        );
+        return new Image.network('');
       },
       itemCount: 3,
       itemHeight: 300,

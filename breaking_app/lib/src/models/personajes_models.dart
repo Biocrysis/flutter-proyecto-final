@@ -1,3 +1,19 @@
+class Personajes {
+  List<Personaje> items = [];
+  Personajes();
+
+  Personajes.fromJsinList(List<dynamic> jsonlist) {
+    if (jsonlist == null) {
+      print(('vacio'));
+    } else {
+      for (var item in jsonlist) {
+        final personaje = new Personaje.fromJSON(item);
+        items.add(personaje);
+      }
+    }
+  }
+}
+
 class Personaje {
   int? charId;
   String? name;
@@ -55,6 +71,6 @@ class Personaje {
   }
 
   getPosterImg() {
-    print('olas');
+    return img;
   }
 }
