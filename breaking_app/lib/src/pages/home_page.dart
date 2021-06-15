@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math';
 import 'dart:ui';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:http/http.dart' as http;
@@ -110,7 +111,8 @@ class _HomePageState extends State<HomePage> {
 
   Widget _swiperTarjeta() {
     final _screenZise = MediaQuery.of(context).size;
-
+    Random random = new Random();
+    int randoms = random.nextInt(posts!.length);
     return Container(
         padding: EdgeInsets.only(top: 25.0),
         height: _screenZise.height * 0.5,
@@ -118,6 +120,8 @@ class _HomePageState extends State<HomePage> {
         child: Swiper(
           //regresa el poster de todas las peliculas
           itemBuilder: (BuildContext context, int index) {
+            int randoms = random.nextInt(posts!.length);
+            randoms += index;
             Text('tthtthr');
             return ClipRRect(
               borderRadius: BorderRadius.circular(12.0),
@@ -137,96 +141,5 @@ class _HomePageState extends State<HomePage> {
           control: new SwiperControl(),
           layout: SwiperLayout.STACK,
         ));
-    /*  return new Swiper(
-      itemBuilder: (BuildContext context, index) {
-        return new Image.network(
-          '${posts?[index].img}',
-        );
-      },
-      itemCount: 3,
-      itemHeight: 300,
-      itemWidth: 400,
-    );
-  } */
   }
 }
-
-/* import 'dart:ui';
-import 'dart:async';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:breaking_app/src/models/personajes_models.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
-
-class HomePage extends StatelessWidget {
-  final List<Personaje> personajesList = [];
-  http.Client? cliente;
-  static const String URLAPI = 'https://www.breakingbadapi.com/api/characters';
-  List<Personaje>? posts;
-
-  Widget build(BuildContext context) {
-    List<String> nav = ['personaje', 'episodios', 'frases', 'asesinatos'];
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.purple,
-        title: Text('Menu'),
-      ),
-      drawer: Drawer(
-        elevation: 0.1,
-        child: ListView.builder(
-          itemCount: nav.length,
-          itemBuilder: (context, index) {
-            return ListTile(
-              title: Text('${nav[index]}'),
-              //metodo que depende el index nos va ayudara a irnos a diferentes paginas
-              onTap: () => Navigator.of(context).pushNamed(nav[index]),
-            );
-          },
-        ),
-      ),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage('assets/fondo.jpg'), fit: BoxFit.cover),
-        ),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 6.0, sigmaY: 6.0),
-          child: Container(
-            decoration: BoxDecoration(color: Colors.white.withOpacity(0.01)),
-            child: Column(
-              children: [Flexible(child: _swiperTarjeta())],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _swiperTarjeta() {
-    return new Swiper(
-      itemBuilder: (BuildContext context, index) {
-        return new Image.network(
-          '${posts?[index].img}',
-        );
-      },
-      itemCount: 3,
-      itemHeight: 300,
-      itemWidth: 400,
-    );
-  }
-
-  Future<void> obtenerDataFromJSON() async {
-    http.Response respuesta = await cliente!.get(Uri.parse(URLAPI));
-    if (respuesta.statusCode == 200) {
-      //creamos un mapa para decodificar el json
-      List jsonData = jsonDecode(utf8.decode(respuesta.bodyBytes));
-      jsonData
-          .map((dynamic json) => posts!.add(Personaje.fromJSON(json)))
-          .toList();
-    } else {
-      Exception('a fallado la conexion de la respuesta');
-    }
-  }
-}
- */

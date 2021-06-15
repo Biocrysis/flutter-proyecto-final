@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:ui';
+import 'package:breaking_app/src/models/referencia_json_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:breaking_app/src/models/personajes_models.dart';
 import 'package:flutter/material.dart';
@@ -66,8 +68,27 @@ class _PersonajeProviderState extends State<PersonajeProvider> {
           },
         ),
         //loading? == SE ESTA CARGANDO EL CONTENIDO DE CUSTOMLOADING?
-        body:
-            Container(child: loading ? customLoading() : customListBuilder()));
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/fon2.jpg'), fit: BoxFit.fill),
+          ),
+          child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 6.0, sigmaY: 6.0),
+              child: Container(
+                  decoration:
+                      BoxDecoration(color: Colors.white.withOpacity(0.01)),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Flexible(
+                          child:
+                              loading ? customLoading() : customListBuilder())
+                    ],
+                  ))),
+        ));
+
+    //Container(child: loading ? customLoading() : customListBuilder()));
   }
 
   Widget customLoading() {
@@ -77,23 +98,6 @@ class _PersonajeProviderState extends State<PersonajeProvider> {
       ),
     );
   }
-  /* Widget _crearLista() {
-    return RefreshIndicator(
-      onRefresh: obtenerPagina1,
-      child: ListView.builder(
-        controller: _scrollController,
-        itemCount: _listNumero.length,
-        itemBuilder: (BuildContext context, index) {
-          final _imagen = _listNumero[index];
-          return FadeInImage(
-            placeholder: AssetImage(''),
-            image:
-                NetworkImage('https://picsum.photos/500/500/?images=$_imagen'),
-          );
-        },
-      ),
-    );
-  } */
 
   Widget customListBuilder() {
     return SafeArea(
@@ -111,9 +115,10 @@ class _PersonajeProviderState extends State<PersonajeProvider> {
                         children: [
                           ListTile(
                             onTap: () {
-                              print('ola');
+                              _showMyDialog(context, index);
                             },
                             subtitle: Card(
+                              color: Colors.green[400],
                               child: ExpansionTile(
                                 title: Text(
                                   '${posts![index].name}',
@@ -132,87 +137,10 @@ class _PersonajeProviderState extends State<PersonajeProvider> {
                         ],
                       ),
                     ));
-
-                    /* return ListTile(
-                      title: Text('${posts![index].name}'),
-                      subtitle: FadeInImage(
-                        placeholder: AssetImage("assets/loadnier.gif"),
-                        image: NetworkImage('${posts![index].img}'),
-                      ),
-                    ); */
                   },
                 ),
         ));
   }
-
-/*   Widget customListBuilder() {
-    return SafeArea(
-        top: true,
-        child: Container(
-          child: posts!.isEmpty
-              ? deataEmpty()
-              : ListView.builder(
-                  itemCount: posts!.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return SafeArea(
-                        child: Container(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ListTile(
-                              onTap: () {
-                                print('${posts![index].birthday}');
-                              },
-                              title: Text(''),
-                              subtitle: Card(
-                                
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(30)),
-                                  margin: EdgeInsets.all(15),
-                                  elevation: 10,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(30),
-                                    child: Column(
-                                      children: <Widget>[
-                                        FadeInImage(
-                                          // En esta propiedad colocamos la imagen a descargar
-                                          image: NetworkImage(
-                                              '${posts![index].img}'),
-
-                                          // En esta propiedad colocamos el gif o imagen de carga
-                                          // debe estar almacenado localmente
-                                          placeholder:
-                                              AssetImage('assets/loadnier.gif'),
-
-                                          // En esta propiedad colocamos mediante el objeto BoxFit
-                                          // la forma de acoplar la imagen en su contenedor
-                                          fit: BoxFit.cover,
-
-                                          // En esta propiedad colocamos el alto de nuestra imagen
-                                          height: 260,
-                                        ),
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child: Text('${posts![index].name}'),
-                                        )
-                                      ],
-                                    ),
-                                  )))
-                        ],
-                      ),
-                    ));
-
-                    /* return ListTile(
-                      title: Text('${posts![index].name}'),
-                      subtitle: FadeInImage(
-                        placeholder: AssetImage("assets/loadnier.gif"),
-                        image: NetworkImage('${posts![index].img}'),
-                      ),
-                    ); */
-                  },
-                ),
-        ));
-  } */
 
   Widget deataEmpty() {
     return Container(
@@ -223,6 +151,39 @@ class _PersonajeProviderState extends State<PersonajeProvider> {
           )
         ],
       ),
+    );
+  }
+
+//creamos la alerta
+  Widget _alertDialog(context, index) {
+    return AlertDialog(
+      title: Text('Informacion del personaje'),
+      content: Text(
+          "Nombre: ${posts![index].name} \n Apodo: ${posts![index].nickname} \n  Cumpleaños: ${posts![index].birthday} \n Ocupacion: ${posts![index].occupation} \n estado: ${posts![index].status} \n Apariencias: ${posts![index].appearance} \n Actor: ${posts![index].portrayed} \n Serie(s): ${posts![index].category}"),
+      actions: <Widget>[
+        Row(
+          children: [
+            RaisedButton(
+                color: Colors.green,
+                child: Text(
+                  "ok",
+                  style: const TextStyle(color: Colors.white),
+                ),
+                textColor: Colors.blue,
+                onPressed: () {
+                  Navigator.of(context).pop();
+                })
+          ],
+        )
+      ],
+      backgroundColor: Colors.green[800],
+    );
+  }
+
+  Future _showMyDialog(BuildContext context, int index) async {
+    return showDialog(
+      context: context,
+      builder: (_) => _alertDialog(context, index),
     );
   }
 }
