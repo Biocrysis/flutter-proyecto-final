@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:math';
 import 'dart:ui';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:http/http.dart' as http;
 import 'package:breaking_app/src/models/personajes_models.dart';
@@ -24,7 +24,6 @@ class _HomePageState extends State<HomePage> {
   bool error = false;
 
 //DISEÑO PARA LA LISTA DE IMAGENS DE LOS PERSONAJES
-  List<int> _listNumero = [];
   int ultimoItem = 0;
 //clase que inicial todas las variables
   @override
@@ -91,7 +90,7 @@ class _HomePageState extends State<HomePage> {
                     BoxDecoration(color: Colors.white.withOpacity(0.01)),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  children: [_swiperTarjeta()],
+                  children: [_swiperTarjeta(), _pieInfo()],
                 ))),
       ),
     );
@@ -137,5 +136,55 @@ class _HomePageState extends State<HomePage> {
           control: new SwiperControl(),
           layout: SwiperLayout.STACK,
         ));
+  }
+
+  Widget _pieInfo() {
+    final textStyle = TextStyle(
+        fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white);
+    return SingleChildScrollView(
+      child: Container(
+        width: double.infinity,
+        child: Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: EdgeInsets.only(left: 15.0),
+                child: Text(
+                  ' ',
+                  style: textStyle,
+                ),
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Image.asset(
+                    'assets/bb.png',
+                    scale: 2,
+                  ),
+                  ListTile(
+                    title: Text('Genero'),
+                    subtitle: Text(
+                      'Drama criminal Suspenso \n Neo-Wéstern Humor negro \n Tragedia',
+                      style: textStyle,
+                    ),
+                  ),
+                  ListTile(
+                    title: Text('Creado por'),
+                    subtitle: Text(
+                      'Vince Gilligan',
+                      style: textStyle,
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

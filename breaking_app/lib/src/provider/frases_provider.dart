@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:ui';
-
+import 'package:flip_card/flip_card.dart';
 import 'package:breaking_app/src/models/frases_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -89,6 +89,13 @@ class _FrasesProviderState extends State<FrasesProvider> {
   }
 
   Widget customListBuilder() {
+    /* return FlipCard(
+        front: Container(
+          child: Text('olla'),
+        ),
+        back: Container(
+          child: Text('adio'),
+        )); */
     return SafeArea(
         child: Container(
       child: posts!.isEmpty
@@ -96,10 +103,26 @@ class _FrasesProviderState extends State<FrasesProvider> {
           : ListView.builder(
               itemCount: posts!.length,
               itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  title: Text('${posts![index].getAuthor}: '),
-                  subtitle: Text('${posts![index].getQuote}'),
+                return FlipCard(
+                  front: Container(
+                    child: Card(
+                        child: ListTile(
+                      title: Text('${posts![index].getAuthor}: '),
+                    )),
+                  ),
+                  back: Container(
+                      child: ListTile(
+                    subtitle: Text('${posts![index].getQuote}'),
+                  )),
                 );
+                /* Card(
+                  child: ListTile(
+                    title: Text(
+                      '${posts![index].getAuthor}: ',
+                    ),
+                    subtitle: Text('${posts![index].getQuote}'),
+                  ),
+                ); */
               },
             ),
     ));

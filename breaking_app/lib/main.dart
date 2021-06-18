@@ -4,7 +4,6 @@ import 'package:breaking_app/src/provider/muertos_provider.dart';
 import 'package:breaking_app/src/provider/personaje_provider.dart';
 import 'package:breaking_app/src/screens/home_scroll_page.dart';
 import 'package:flutter/material.dart';
-import 'package:breaking_app/src/pages/home_page.dart';
 
 //f2 para renombrar parametros owo
 void main() => runApp(MyApp());

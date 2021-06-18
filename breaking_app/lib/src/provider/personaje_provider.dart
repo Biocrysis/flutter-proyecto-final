@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:ui';
-import 'package:breaking_app/src/models/referencia_json_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:breaking_app/src/models/personajes_models.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +22,6 @@ class _PersonajeProviderState extends State<PersonajeProvider> {
   bool error = false;
 
 //DISEÑO PARA LA LISTA DE IMAGENS DE LOS PERSONAJES
-  List<int> _listNumero = [];
   int ultimoItem = 0;
 //clase que inicial todas las variables
   @override

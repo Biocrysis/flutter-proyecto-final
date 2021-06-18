@@ -18,7 +18,7 @@ class ScrollDesign extends StatelessWidget {
         stops: [0.5, 0.6],
         colors: [
           Colors.grey[900],
-          Colors.black12,
+          Colors.green[900],
         ],
       )),
 

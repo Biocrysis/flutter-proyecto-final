@@ -3,6 +3,7 @@ class Personajes {
   Personajes();
 
   Personajes.fromJsinList(List<dynamic> jsonlist) {
+    // ignore: unnecessary_null_comparison
     if (jsonlist == null) {
       print(('vacio'));
     } else {
