@@ -111,8 +111,6 @@ class _HomePageState extends State<HomePage> {
 
   Widget _swiperTarjeta() {
     final _screenZise = MediaQuery.of(context).size;
-    Random random = new Random();
-    int randoms = random.nextInt(posts!.length);
     return Container(
         padding: EdgeInsets.only(top: 25.0),
         height: _screenZise.height * 0.5,
@@ -120,8 +118,6 @@ class _HomePageState extends State<HomePage> {
         child: Swiper(
           //regresa el poster de todas las peliculas
           itemBuilder: (BuildContext context, int index) {
-            int randoms = random.nextInt(posts!.length);
-            randoms += index;
             Text('tthtthr');
             return ClipRRect(
               borderRadius: BorderRadius.circular(12.0),

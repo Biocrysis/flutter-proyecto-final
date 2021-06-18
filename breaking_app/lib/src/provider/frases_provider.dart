@@ -52,6 +52,7 @@ class _FrasesProviderState extends State<FrasesProvider> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.green,
           child: Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.of(context).pop();
@@ -96,9 +97,8 @@ class _FrasesProviderState extends State<FrasesProvider> {
               itemCount: posts!.length,
               itemBuilder: (BuildContext context, int index) {
                 return ListTile(
-                  title: Text('${posts![index].getAuthor}: ' +
-                      '${posts![index].getQuote}'),
-                  //subtitle: Text('${posts![index].getBody}.'),
+                  title: Text('${posts![index].getAuthor}: '),
+                  subtitle: Text('${posts![index].getQuote}'),
                 );
               },
             ),

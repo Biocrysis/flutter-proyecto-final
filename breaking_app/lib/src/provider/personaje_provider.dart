@@ -62,6 +62,7 @@ class _PersonajeProviderState extends State<PersonajeProvider> {
   Widget build(BuildContext context) {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.green,
           child: Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.of(context).pop();

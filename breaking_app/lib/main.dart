@@ -2,6 +2,7 @@
 import 'package:breaking_app/src/provider/frases_provider.dart';
 import 'package:breaking_app/src/provider/muertos_provider.dart';
 import 'package:breaking_app/src/provider/personaje_provider.dart';
+import 'package:breaking_app/src/screens/home_scroll_page.dart';
 import 'package:flutter/material.dart';
 import 'package:breaking_app/src/pages/home_page.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         title: 'Material App',
         initialRoute: '/',
         routes: {
-          '/': (BuildContext context) => HomePage(),
+          '/': (BuildContext context) => ScrollDesign(),
           //si no instancioamos la ruta aqui
           //la clase de ruta no sirve nada y no reconoce la nueva pagina
           'personaje': (BuildContext context) => PersonajeProvider(),
