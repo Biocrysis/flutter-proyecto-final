@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:ui';
 
 import 'package:breaking_app/src/models/muertos_model.dart';
+import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -53,6 +54,10 @@ class _MuertosProviderState extends State<MuertosProvider> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: Text('Muertes'),
+          backgroundColor: Colors.green[900],
+        ),
         floatingActionButton: FloatingActionButton(
             backgroundColor: Colors.green,
             child: Icon(Icons.arrow_back),
@@ -88,6 +93,8 @@ class _MuertosProviderState extends State<MuertosProvider> {
   }
 
   Widget customListBuilder() {
+    final textStyle = TextStyle(
+        fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white);
     return SafeArea(
         child: Container(
       child: posts!.isEmpty
@@ -95,11 +102,46 @@ class _MuertosProviderState extends State<MuertosProvider> {
           : ListView.builder(
               itemCount: posts!.length,
               itemBuilder: (BuildContext context, int index) {
-                return ListTile(
+                return FlipCard(
+                  front: Column(
+                    children: [
+                      Container(
+                        child: Card(
+                          color: Colors.green[900],
+                          child: ListTile(
+                            title: Text(
+                              'Responsable: ${posts![index].responsible}',
+                              style: textStyle,
+                            ),
+                            leading: Icon(Icons.dangerous_sharp),
+                          ),
+                        ),
+                      ),
+                      Image(image: AssetImage('assets/bdeat.jpg'))
+                    ],
+                  ),
+                  back: Column(
+                    children: [
+                      Container(
+                        child: Card(
+                          child: ListTile(
+                            subtitle: Text(' causa: ${posts![index].cause}. \n' +
+                                ' muerto: ${posts![index].death} \n ' +
+                                'Ultimas palabras:  ${posts![index].lastWords} \n' +
+                                ' Temporada:  ${posts![index].season} \n' +
+                                ' Episodio:  ${posts![index].episode} \n' +
+                                ' Numero de muertos"  ${posts![index].numberOfDeaths}'),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                );
+                /* ListTile(
                   title: Text('${posts![index].responsible}'),
                   subtitle: Text('causa: ${posts![index].cause}. ' +
                       'muerto: ${posts![index].death}'),
-                );
+                ); */
               },
             ),
     ));

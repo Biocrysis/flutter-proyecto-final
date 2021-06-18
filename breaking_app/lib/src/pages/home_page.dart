@@ -140,7 +140,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _pieInfo() {
     final textStyle = TextStyle(
-        fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white);
+        fontSize: 16, fontWeight: FontWeight.normal, color: Colors.white);
     return SingleChildScrollView(
       child: Container(
         width: double.infinity,

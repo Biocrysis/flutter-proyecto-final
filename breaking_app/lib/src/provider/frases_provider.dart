@@ -96,6 +96,8 @@ class _FrasesProviderState extends State<FrasesProvider> {
         back: Container(
           child: Text('adio'),
         )); */
+    final textStyle = TextStyle(
+        fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white);
     return SafeArea(
         child: Container(
       child: posts!.isEmpty
@@ -104,16 +106,39 @@ class _FrasesProviderState extends State<FrasesProvider> {
               itemCount: posts!.length,
               itemBuilder: (BuildContext context, int index) {
                 return FlipCard(
-                  front: Container(
-                    child: Card(
-                        child: ListTile(
-                      title: Text('${posts![index].getAuthor}: '),
-                    )),
+                  front: Column(
+                    children: [
+                      Container(
+                        child: Card(
+                            color: Colors.green[900],
+                            child: ListTile(
+                              title: Text(
+                                'Autor: ${posts![index].getAuthor}: ',
+                                style: textStyle,
+                              ),
+                              leading:
+                                  Icon(Icons.supervised_user_circle_outlined),
+                            )),
+                        decoration: BoxDecoration(boxShadow: [
+                          BoxShadow(color: Colors.black, blurRadius: 20.0)
+                        ]),
+                      ),
+                      Image(
+                        image: AssetImage('assets/break.jpg'),
+                        fit: BoxFit.contain,
+                      )
+                    ],
                   ),
                   back: Container(
-                      child: ListTile(
-                    subtitle: Text('${posts![index].getQuote}'),
-                  )),
+                    child: Card(
+                        child: ListTile(
+                      subtitle: Text(
+                          'Frase: ${posts![index].getQuote} \n Serie(s): ${posts![index].series} '),
+                    )),
+                    decoration: BoxDecoration(boxShadow: [
+                      BoxShadow(color: Colors.black, blurRadius: 10.0)
+                    ]),
+                  ),
                 );
                 /* Card(
                   child: ListTile(

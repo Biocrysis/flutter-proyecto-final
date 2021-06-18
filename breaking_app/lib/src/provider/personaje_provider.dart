@@ -59,6 +59,10 @@ class _PersonajeProviderState extends State<PersonajeProvider> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: Text('Personajes'),
+          backgroundColor: Colors.green[900],
+        ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.green,
           child: Icon(Icons.arrow_back),
@@ -99,6 +103,8 @@ class _PersonajeProviderState extends State<PersonajeProvider> {
   }
 
   Widget customListBuilder() {
+    final textStyle = TextStyle(
+        fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white);
     return SafeArea(
         top: true,
         child: Container(
@@ -117,10 +123,11 @@ class _PersonajeProviderState extends State<PersonajeProvider> {
                               _showMyDialog(context, index);
                             },
                             subtitle: Card(
-                              color: Colors.green[400],
+                              color: Colors.green[900],
                               child: ExpansionTile(
                                 title: Text(
                                   '${posts![index].name}',
+                                  style: textStyle,
                                 ),
                                 children: [
                                   FadeInImage(
